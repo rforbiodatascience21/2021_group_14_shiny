@@ -1,0 +1,8 @@
+git init
+git add .
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/rforbiodatascience21/2021_group_xx_rpackage.git
+git push -u origin main
