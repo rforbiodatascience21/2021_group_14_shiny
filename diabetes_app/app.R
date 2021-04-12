@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+diabetes <- read.csv("/cloud/project/diabetes_app/data/diabetes.csv")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -18,6 +19,7 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
+            # NOT OURS
             sliderInput("bins",
                         "Number of bins:",
                         min = 1,
@@ -27,14 +29,17 @@ ui <- fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
-           plotOutput("distPlot")
+            # OURS
+            tableOutput("testTable"),
+            # NOT OURS
+            plotOutput("distPlot")
         )
     )
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
+    #NOT OURS
     output$distPlot <- renderPlot({
         # generate bins based on input$bins from ui.R
         x    <- faithful[, 2]
@@ -42,6 +47,11 @@ server <- function(input, output) {
 
         # draw the histogram with the specified number of bins
         hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    })
+    
+    #OURS
+    output$testTable <- renderTable({
+        diabetes
     })
 }
 
