@@ -13,8 +13,9 @@ library(tidyverse)
 library(stringr)
 library(shinythemes)
 
+
 ##### Read and clean up data ######
-diabetes <- read_csv("/cloud/project/diabetes_app/data/diabetes.csv")
+diabetes <- read_csv("/cloud/project/diabetes_app/diabetes.csv")
 diabetes_clean <- diabetes %>%
     mutate(height = round(height * 2.54, 1), weight = round(weight / 2.205, 1)) %>%
     mutate(BMI = weight/((height/100)^2)) %>%
